@@ -12,36 +12,35 @@
     <hr>
 
     <p>Add a category</p>
-    <form action="/categories">
+    <form action="/categories" method="POST">
         Name: <input type="text" name="name"><br>
         Desc: <textarea name="desc" id=""></textarea><br>
         <input type="submit" value="New Category"><br>
     </form>
 
-    <h4>Cars</h4>
-    <p>Desc: Here is a list of cool cars</p>
-    <ul>
-        <ul>- blue cars</ul>
-        <ul>- something</ul>
-    </ul>
-    <form action="/items">
-        Add an item:
-        <input type="text" name="name"><br>
-        <input type="submit" value="New Item">
-    </form>
 
-    <p><b>colors</b></p>
-    <p>Desc: colors that i like</p>
-    <ul>
-        <ul>- chartreuse</ul>
-        <ul>- aquamarine</ul>
-        <ul>- red</ul>
-    </ul>
-    <form action="/items">
-        Add an item:
-        <input type="text" name="name"><br>
-        <input type="submit" value="New Item">
-    </form>
+    <% for (let category of categories) { %>
+
+        <h4> <%= category.name %> </h4>
+        <p>Desc: <%= category.desc %> </p>
+        <ul>
+
+            <% for ( let item of category._items) { %>
+
+                <ul>- <%= item.name %> </ul>
+
+            <% } %>
+        </ul>
+        <form action="/items/<%= category._id %>" method="POST" >
+            Add an item:
+            <input type="text" name="name"><br>
+            <input type="submit" value="New Item">
+        </form>
+        <hr>
+
+    <% } %>
+
+
 
 </body>
 </html>
