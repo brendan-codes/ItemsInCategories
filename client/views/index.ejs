@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>HELLO WARLDO</h1>
+    <hr>
+
+    <p>Add a category</p>
+    <form action="/categories" method="POST">
+        Name: <input type="text" name="name"><br>
+        Desc: <textarea name="desc" id=""></textarea><br>
+        <input type="submit" value="New Category"><br>
+    </form>
+
+
+    <% for (let category of categories) { %>
+
+        <h4> <%= category.name %> </h4>
+        <p>Desc: <%= category.desc %> </p>
+        <ul>
+
+            <% for ( let item of category._items) { %>
+
+                <ul>- <%= item.name %> </ul>
+
+            <% } %>
+        </ul>
+        <form action="/items/<%= category._id %>" method="POST" >
+            Add an item:
+            <input type="text" name="name"><br>
+            <input type="submit" value="New Item">
+        </form>
+        <hr>
+
+    <% } %>
+
+
+
+</body>
+</html>
